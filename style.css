@@ -1,7 +1,7 @@
 #bg{
 
     background-color: darkgray;
-   margin-top: 5vh; 
+   margin-top: 10vh; 
     
 }
 h1,h2{
@@ -10,20 +10,74 @@ h1,h2{
     margin-top: 5vh;
 }
 
+
+.container {
+    margin-top: 20%;
+    /* Center child horizontally*/
+    display: flex;
+    justify-content: center;
+  }
+
 button{
     margin: 0;
-    
     background-color: black;
     color: darkgray;
     
 }
 div{
     text-align: center;
-    align-items: center;
+    align-items: center; 
 }
 .grid-container {
     display: grid;
     grid-template-columns: auto auto;
     
     padding: 10px;
+  }
+
+
+  #rotateMode{
+    border-radius: 50%;
+    width: 125px;
+    height: 125px;
+    background-color: gray;
+    color:white;
+    position:absolute;
+    
+   
+  }
+  
+
+  @media only screen and (max-width: 600px) {
+    body {
+      background-color: lightblue;
+    }
+  }
+
+  #left{
+      position:absolute;
+    top:50%;
+    left:0px;
+    transform:translateY(-50%);
+  }
+  
+  #right{
+   position:absolute;
+    top:50%;
+    right:0px;
+    transform:translateY(-50%);
+  }
+  
+  #up{
+       position:absolute;
+    top:0px;
+    left:50%;
+    transform:translateX(-50%);
+  }
+  
+  #down{
+      position:absolute;
+    bottom:0px;
+    left:50%;
+    transform:translateX(-50%);
   }
