@@ -68,7 +68,7 @@ function init() {
         
         drawSnake: function () {
 
-            if (this.cells[0].x * (cs) > W || this.cells[0].y * (cs) > H || this.cells[0].x * (cs-1) < 0 || this.cells[0].y * (cs-1) < 0 ) {
+            if (this.cells[0].x * (cs) > W-2 || this.cells[0].y * (cs) > H-2 || this.cells[0].x * (cs-1) < 0 || this.cells[0].y * (cs-1) < 0 ) {
                 clearInterval(f);
                 console.log("game over");
                 window.alert("Better luck next time!");
