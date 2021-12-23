@@ -1,7 +1,46 @@
+
+var mql = window.matchMedia('(max-width: 600px)');
+
+var canvas = document.getElementById("bg") //global variable
+var W,H;
+   
+
+
+
+function screenTest(e) {
+    console.log("in screen test")
+
+  if (e.matches) {
+    /* the viewport is 600 pixels wide or less */
+    document.getElementById("arcade").style.display = "center";
+   // console.log(document.getElementById("arcade"))
+    canvas.width = 300
+    canvas.height=400
+
+  } else {
+    /* the viewport is more than than 600 pixels wide */
+    document.getElementById("arcade").style.display = "none";
+    canvas.width = 500
+    canvas.height=300
+    console.log("in else")
+  }
+}
+
+screenTest(mql);
+
+
+//console.log(canvas.width,canvas.height)
+
+
 function init() {
-    canvas = document.getElementById("bg") //global variable
-    W = canvas.width = 500
-    H = canvas.height = 300
+  
+    screenTest(mql);   
+
+    W=canvas.width
+    H=canvas.height
+    
+    console.log(W,H)
+
     pen = canvas.getContext("2d")
     cs = 10
     score = 0
@@ -29,10 +68,11 @@ function init() {
         
         drawSnake: function () {
 
-            if (this.cells[0].x * cs > 500 || this.cells[0].y * cs > 300 || this.cells[0].x * cs < 0 || this.cells[0].y * cs < 0) {
+            if (this.cells[0].x * (cs) > W || this.cells[0].y * (cs) > H || this.cells[0].x * (cs-1) < 0 || this.cells[0].y * (cs-1) < 0 ) {
                 clearInterval(f);
                 console.log("game over");
                 window.alert("Better luck next time!");
+                
             }
 
             pen.fillStyle = "black";
@@ -91,6 +131,8 @@ function init() {
     
     updateScore();
     snake.createSnake();
+    try { clearInterval(f); }
+    catch(err){ console.log("Loading..")}
     f = setInterval(gameloop,this.speed)
     
 }//init
