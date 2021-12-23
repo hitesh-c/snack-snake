@@ -14,7 +14,7 @@ function screenTest(e) {
         /* the viewport is 600 pixels wide or less */
         document.getElementById("arcade").style.display = "center";
         document.getElementById("bg").setAttribute("style", "margin-top : 3vh;");
-        document.getElementById("arcade").setAttribute("style", "margin-top : 2vh;");
+        document.getElementById("arcade").setAttribute("style", "padding-top : 2vh;");
         // console.log(document.getElementById("arcade"))
         canvas.width = 300
         canvas.height = 400
@@ -41,7 +41,6 @@ function init() {
     W = canvas.width
     H = canvas.height
 
-    console.log(W, H)
 
     pen = canvas.getContext("2d")
     cs = 10
