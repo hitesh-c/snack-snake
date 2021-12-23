@@ -13,7 +13,8 @@ function screenTest(e) {
     if (e.matches) {
         /* the viewport is 600 pixels wide or less */
         document.getElementById("arcade").style.display = "center";
-        document.getElementById("bg").setAttribute("style", "margin-top : 4vh;");
+        document.getElementById("bg").setAttribute("style", "margin-top : 3vh;");
+        document.getElementById("arcade").setAttribute("style", "margin-top : 2vh;");
         // console.log(document.getElementById("arcade"))
         canvas.width = 300
         canvas.height = 400
