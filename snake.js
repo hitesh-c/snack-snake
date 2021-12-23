@@ -2,28 +2,29 @@
 var mql = window.matchMedia('(max-width: 600px)');
 
 var canvas = document.getElementById("bg") //global variable
-var W,H;
-   
+var W, H;
+
 
 
 
 function screenTest(e) {
     console.log("in screen test")
 
-  if (e.matches) {
-    /* the viewport is 600 pixels wide or less */
-    document.getElementById("arcade").style.display = "center";
-   // console.log(document.getElementById("arcade"))
-    canvas.width = 300
-    canvas.height=400
+    if (e.matches) {
+        /* the viewport is 600 pixels wide or less */
+        document.getElementById("arcade").style.display = "center";
+        document.getElementById("bg").setAttribute("style", "margin-top : 4vh;");
+        // console.log(document.getElementById("arcade"))
+        canvas.width = 300
+        canvas.height = 400
 
-  } else {
-    /* the viewport is more than than 600 pixels wide */
-    document.getElementById("arcade").style.display = "none";
-    canvas.width = 500
-    canvas.height=300
-    console.log("in else")
-  }
+    } else {
+        /* the viewport is more than than 600 pixels wide */
+        document.getElementById("arcade").style.display = "none";
+        canvas.width = 500
+        canvas.height = 300
+        console.log("in else")
+    }
 }
 
 screenTest(mql);
@@ -33,24 +34,24 @@ screenTest(mql);
 
 
 function init() {
-  
-    screenTest(mql);   
 
-    W=canvas.width
-    H=canvas.height
-    
-    console.log(W,H)
+    screenTest(mql);
+
+    W = canvas.width
+    H = canvas.height
+
+    console.log(W, H)
 
     pen = canvas.getContext("2d")
     cs = 10
     score = 0
     food = createfood();
     speed = 150
-    n=0
+    n = 0
     snake = {
 
         init_length: 5,
-        
+
         cells: [],
         //cell size
 
@@ -65,26 +66,26 @@ function init() {
 
         },
 
-        
+
         drawSnake: function () {
 
-            if (this.cells[0].x * (cs) > W-2 || this.cells[0].y * (cs) > H-2 || this.cells[0].x * (cs-1) < 0 || this.cells[0].y * (cs-1) < 0 ) {
+            if (this.cells[0].x * (cs) > W - 2 || this.cells[0].y * (cs) > H - 2 || this.cells[0].x * (cs - 1) < 0 || this.cells[0].y * (cs - 1) < 0) {
                 clearInterval(f);
                 console.log("game over");
                 window.alert("Better luck next time!");
-                
+
             }
 
             pen.fillStyle = "black";
 
             for (var i = 0; i < this.cells.length; i++) {
-                pen.fillRect(this.cells[i].x * cs, this.cells[i].y * cs, cs-1, cs-1 );
+                pen.fillRect(this.cells[i].x * cs, this.cells[i].y * cs, cs - 1, cs - 1);
             }
 
         },//drawsnake
 
 
-        updateSnake : function () {
+        updateSnake: function () {
 
             x = this.cells[0].x
             y = this.cells[0].y
@@ -93,13 +94,13 @@ function init() {
             if (x == foodX && y == foodY) { //foodeaten
                 this.cells.push(food);
                 score++;
-                food=createfood();
-                speed>60 ? speed = speed-5 : speed;
+                food = createfood();
+                speed > 60 ? speed = speed - 5 : speed;
                 resetSpeed(speed);
-                updateScore();     
+                updateScore();
             }
 
-            else{
+            else {
 
                 this.cells.pop();
             }
@@ -128,19 +129,19 @@ function init() {
         }
 
     }//snake object
-    
+
     updateScore();
     snake.createSnake();
     try { clearInterval(f); }
-    catch(err){ console.log("Loading..")}
-    f = setInterval(gameloop,this.speed)
-    
+    catch (err) { console.log("Loading..") }
+    f = setInterval(gameloop, this.speed)
+
 }//init
 
-function resetSpeed(n){
-   // console.log(n)
+function resetSpeed(n) {
+    // console.log(n)
     clearInterval(f);
-    f = setInterval(gameloop,n)
+    f = setInterval(gameloop, n)
 }
 
 
@@ -160,8 +161,8 @@ function update() {
 
 function updateScore() {
     var text = document.getElementById("score");
-    text.innerHTML=score;
-   // console.log(score,speed);   
+    text.innerHTML = score;
+    // console.log(score,speed);   
 }
 
 
@@ -199,22 +200,22 @@ function createfood() {
 function drawFood() {
     pen.fillStyle = "red";
     pen.fillRect(food.x * cs, food.y * cs, cs - 1, cs - 1);
-   
+
 }
 
 function gameloop() {
     draw();
     update();
-  //  console.log("In gameloop")
+    //  console.log("In gameloop")
 }
 
 document.addEventListener('keydown', keypressed);
 
 init();
 
-var button=document.getElementById("start");
-button.addEventListener('click',restart)
-function restart(){
+var button = document.getElementById("start");
+button.addEventListener('click', restart)
+function restart() {
     init();
     console.log("Game Restarted");
 }
